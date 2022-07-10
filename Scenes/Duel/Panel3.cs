@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class Panel3 : MonoBehaviour
 {
 
-    public GameObject debugText;
+    //public GameObject debugText;
 
 
     static bool _isActive = false;

@@ -9,7 +9,7 @@ using UnityEngine;
 public class DuelFirestore : MonoBehaviour
 {
 
-    public GameObject debugText;
+    //public GameObject debugText;
 
     FirebaseFirestore _db;
     FirebaseFirestore db
@@ -33,7 +33,7 @@ public class DuelFirestore : MonoBehaviour
             Query query = db.Collection("roomEvents").WhereEqualTo("roomID", roomID);
             ListenerRegistration listener = query.Listen(snapshot =>
             {
-                debugText.GetComponent<TextMeshPro>().SetText($"Mulai Listen\n{roomID}\n{DateTime.Now}");
+                //debugText.GetComponent<TextMeshPro>().SetText($"Mulai Listen\n{roomID}\n{DateTime.Now}");
 
                 foreach (DocumentChange change in snapshot.GetChanges())
                 {
@@ -52,7 +52,7 @@ public class DuelFirestore : MonoBehaviour
                             string monsterID = (string)dokumenBaru["monsterID"];
                             int selectedSlot = Convert.ToInt32(dokumenBaru["selectedSlot"]);
 
-                            debugText.GetComponent<TextMeshPro>().SetText($"{monsterID}\n{selectedSlot}");
+                            //debugText.GetComponent<TextMeshPro>().SetText($"{monsterID}\n{selectedSlot}");
 
                             duelGamePlay.GameplayEvent.monsterSummoned(monsterID, selectedSlot);
                         }
@@ -69,7 +69,7 @@ public class DuelFirestore : MonoBehaviour
                             Vector2Int destination = new Vector2Int(destinationX, destinationY);
                             Vector2Int start = new Vector2Int(startX, startY);
 
-                            debugText.GetComponent<TextMeshPro>().SetText($"Monster di {destinationX}, {destinationY} pindah");
+                            //debugText.GetComponent<TextMeshPro>().SetText($"Monster di {destinationX}, {destinationY} pindah");
 
                             duelGamePlay.GameplayEvent.monsterMoving(destination, start);
                         }
@@ -88,7 +88,7 @@ public class DuelFirestore : MonoBehaviour
                             Vector2Int destination = new Vector2Int(destinationX, destinationY);
                             Vector2Int start = new Vector2Int(startX, startY);
 
-                            debugText.GetComponent<TextMeshPro>().SetText($"Monster di {destinationX}, {destinationY} menyerang");
+                            //debugText.GetComponent<TextMeshPro>().SetText($"Monster di {destinationX}, {destinationY} menyerang");
 
                             duelGamePlay.GameplayEvent.monsterAttacking(destination, start, attackIndex);
                         }
@@ -98,7 +98,7 @@ public class DuelFirestore : MonoBehaviour
         }
         catch (Exception e)
         {
-            debugText.GetComponent<TextMeshPro>().SetText($"{e.GetType()}\n{e.Message}");
+            //debugText.GetComponent<TextMeshPro>().SetText($"{e.GetType()}\n{e.Message}");
         }
     }
 
@@ -122,7 +122,7 @@ public class DuelFirestore : MonoBehaviour
         };
 
         docRef.SetAsync(eventDuel).ContinueWithOnMainThread(task => {
-            debugText.GetComponent<TextMeshPro>().SetText($"{monsterID} berhasil dikirim");
+            //debugText.GetComponent<TextMeshPro>().SetText($"{monsterID} berhasil dikirim");
         });
 
     }
@@ -143,7 +143,7 @@ public class DuelFirestore : MonoBehaviour
         };
 
         docRef.SetAsync(eventDuel).ContinueWithOnMainThread(task => {
-            debugText.GetComponent<TextMeshPro>().SetText($"gerakan {destination.x}, {destination.y} berhasil dikirim");
+            //debugText.GetComponent<TextMeshPro>().SetText($"gerakan {destination.x}, {destination.y} berhasil dikirim");
         });
     }
 
@@ -164,7 +164,7 @@ public class DuelFirestore : MonoBehaviour
         };
 
         docRef.SetAsync(eventDuel).ContinueWithOnMainThread(task => {
-            debugText.GetComponent<TextMeshPro>().SetText($"serangan {destination.x}, {destination.y} berhasil dikirim");
+            //debugText.GetComponent<TextMeshPro>().SetText($"serangan {destination.x}, {destination.y} berhasil dikirim");
         });
     }
 

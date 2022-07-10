@@ -227,10 +227,10 @@ public class duelGamePlay : MonoBehaviour
 
             if (getData.isBlue)
             {
-                duelGamePlay.cardInP3[selectedSlot].monsterPrefab.GetComponent<MonsterHandler>().mesh.GetComponent<Renderer>().sharedMaterial.SetColor("_OutlineColor", Color.blue);
+                duelGamePlay.cardInP3[selectedSlot].monsterPrefab.GetComponent<MonsterHandler>().mesh.GetComponent<Renderer>().material.SetColor("_OutlineColor", Color.blue);
             }
             else {
-                duelGamePlay.cardInP3[selectedSlot].monsterPrefab.GetComponent<MonsterHandler>().mesh.GetComponent<Renderer>().sharedMaterial.SetColor("_OutlineColor", Color.red);
+                duelGamePlay.cardInP3[selectedSlot].monsterPrefab.GetComponent<MonsterHandler>().mesh.GetComponent<Renderer>().material.SetColor("_OutlineColor", Color.red);
             }
             //===============================
         }
@@ -276,12 +276,22 @@ public class duelGamePlay : MonoBehaviour
             duelGamePlay.cardInP3[selectedPawn.panel3Index].monsterPrefab.GetComponent<MonsterHandler>().setAttacking(new Vector3(  destination.x * repo.MyConstant.gridSize,
                                                                                                                                     0,
                                                                                                                                     (5 - destination.y) * repo.MyConstant.gridSize), attackIndex);
+            ///ini original
+            //var attackTarget = repo.Validator.canAttack(destination, start, cardInP3[selectedPawn.panel3Index].role);
 
-            var attackTarget = repo.Validator.canAttack(destination, start, cardInP3[selectedPawn.panel3Index].role);
+            ///entah kapan x sama y di vector tertukar
+            var attackTarget = repo.Validator.canAttack(    new Vector2Int(destination.y, destination.x),
+                                                            new Vector2Int(start.y, start.x),
+                                                            cardInP3[selectedPawn.panel3Index].role);
+
+            //Debug.LogError($"di fungsi duelGamePlay.monsterAttacking() bisa attack: {attackTarget.canAttack}, Jumlah musuh {attackTarget.targetsPosition.Count}");
+            Debug.LogError($"di fungsi duelGamePlay.monsterAttacking(), destination: {destination.x}, {destination.y}; Start: {start.x}, {start.y}; role: {cardInP3[selectedPawn.panel3Index].role.ToString()}");
 
             foreach (Vector2Int data in attackTarget.targetsPosition)
             {
                 cardInP3[CardInP2[data.x, data.y].panel3Index].damageCounterCount += fetchAllCardData.findCardById(cardInP3[selectedPawn.panel3Index].id).attack[attackIndex].damage;
+
+                Debug.LogError($"di fungsi duelGamePlay.monsterAttacking() mengurangi hp: {cardInP3[CardInP2[data.x, data.y].panel3Index].id}");
 
                 if (cardInP3[CardInP2[data.x, data.y].panel3Index].damageCounterCount >= fetchAllCardData.findCardById(cardInP3[selectedPawn.panel3Index].id).hp)
                 {

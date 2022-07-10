@@ -167,6 +167,10 @@ public class Panel2 : MonoBehaviour
                     if (allowToMove)
                     {
                         var canAttack = repo.Validator.canAttack(new Vector2Int(verticalIndex, horizontalIndex), new Vector2Int(attackingPawnIndex.y, attackingPawnIndex.x), duelGamePlay.cardInP3[selectedPawn.panel3Index].role);
+
+                        //Debug.LogError($"di Panel2, bisa attack: {canAttack.canAttack}, Jumlah musuh {canAttack.targetsPosition.Count}");
+                        Debug.LogError($"di Panel2, destination: {verticalIndex}, {horizontalIndex}; Start: {attackingPawnIndex.y}, {attackingPawnIndex.x}; role: {duelGamePlay.cardInP3[selectedPawn.panel3Index].role.ToString()}");
+
                         if (canAttack.canAttack == false)
                         {
                             handleAttack = false;

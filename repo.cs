@@ -141,9 +141,11 @@ public class repo
                         //skip kalo pion yang dapat diserang milik sendiri(gak boleh serang teman)
                         if (duelGamePlay.cardInP3[data.panel3Index].isBlue == DuelFirestore.meIsBlue)
                         {
+                            Debug.LogError($"di fungsi repo.canAttack(), menyerang teman sendiri {duelGamePlay.cardInP3[data.panel3Index].id} ({bilangan1[x]}, {bilangan2[x]}) ({duelGamePlay.cardInP3[data.panel3Index].isBlue} - {DuelFirestore.meIsBlue})");
                             continue;
                         }
                         ret.targetsPosition.Add(new Vector2Int(destination.x + bilangan1[x], destination.y + bilangan2[x]));
+                        Debug.LogError($"di fungsi repo.canAttack(), musuh ditemukan {duelGamePlay.cardInP3[data.panel3Index].id} ({bilangan1[x]}, {bilangan2[x]}) ({duelGamePlay.cardInP3[data.panel3Index].isBlue} - {DuelFirestore.meIsBlue})");
                     }
                 }
                 catch { }
