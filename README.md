@@ -9,6 +9,9 @@ My final project. A VR-TCG Game
 - Buat ukuran monster lebih besar supaya lebih mudah dilihat
 - tambah event ganti giliran
 - Batasi gerakan dan serangan monster sesuai authority
+- User baru belum punya kartu dan coin. Jadi kalau buka halaman DeckBuilder gak ada isinya di scrollview atas dan bawah
+- Di halaman DeckBuilder, kalau data di scrollview atas atau bawah kosong(misalnya baru buat deck) di unity dia bakal throw error. Meskipun begitu aplikasinya masih work sih.
+- Di halaman shop tambah jumlah uang yang dimiliki user. Api untuk ambil daftar item yang dijual bisa diedit untuk return jumlah koin user.
 
 
 # Daftar library yang dipakai
